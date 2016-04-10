@@ -15,7 +15,7 @@ Compared to Linux, our syscall interface is much more minimal. This is not becau
 
 This is an generalization of "Everything is a file", largely inspired by Plan 9. In Redox, "resources" (will be explained later) can be both socket-like and file-like, making them fast enough for using them for virtually everything.
 
-This way we get a more unified system API. We will explain this later, in [URLs, schemes, and resources](./design/urls_schemes_resources.html)
+This way we get a more unified system API. We will explain this later, in [URLs, schemes, and resources].
 
 The kernel
 ----------
@@ -28,13 +28,16 @@ Having vastly smaller amounts of code in the kernel makes it easier to find and 
 
 It should be noted that the extra lines are simply based outside of kernel space, making them less dangerous, not necessarily a smaller number.
 
-The main idea is to have components and drivers that would be inside a monolithic kernel exist in user space and follow the Principle of Least Authority (POLA). This is where every individual component is:
+The main idea is to have components and drivers that would be inside a monolithic kernel exist in user-space and follow the Principle of Least Authority (POLA). This is where every individual component is:
 * Completely isolated in memory and as separate user processes
   * The failure of one component does not crash other components
   * Allows foreign and untrusted code to not expose the entire system
   * Bugs and malware cannot spread to other components
 * Has restricted communication with other components
 * Doesn't have Admin/Super-User privileges
-  * Bugs are moved to user space which reduces their power
+  * Bugs are moved to user-space which reduces their power
 
 All of this increases the reliability of the system significantly. This would be useful for mission-critical applications and for users that want minimal issues with their computer systems.
+
+
+[URLs, schemes, and resources]: ./design/urls_schemes_resources.html
